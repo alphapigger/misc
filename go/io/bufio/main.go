@@ -71,6 +71,7 @@ func tcp() {
 			n, err := conn.Read(buf)
 			log.Printf("tcp server: read data %s from %s, length is: %d, err is: %v\n", buf[:n], conn.RemoteAddr(), n, err)
 			buf = make([]byte, 20)
+			// wait conn close
 			time.Sleep(time.Millisecond * 10)
 			// "how are youhaha", nil
 			n, err = conn.Read(buf)
