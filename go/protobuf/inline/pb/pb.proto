@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb;
+
+import "gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+message User {
+  string name = 1;
+  int32 age = 2;
+  bytes note = 3;
+}
