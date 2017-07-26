@@ -2,13 +2,29 @@ syntax = "proto3";
 
 package pb;
 
-import "gogoproto/gogo.proto";
+/* import "gogoproto/gogo.proto"; */
 
-option (gogoproto.marshaler_all) = true;
-option (gogoproto.unmarshaler_all) = true;
+/* option (gogoproto.marshaler_all) = true; */
+/* option (gogoproto.unmarshaler_all) = true; */
 
 message User {
   string name = 1;
   int32 age = 2;
   bytes note = 3;
+}
+
+message AliasUser {
+  string name = 1;
+  int32 age = 2;
+  bytes note = 3;
+}
+
+message A {
+  B b = 1;
+  string name = 2;
+}
+
+message B{
+  string name = 1;
+  int32 age = 2;
 }

@@ -8,8 +8,12 @@ import (
 )
 
 func main() {
-	// cannot inline, need to find the reason
 	p, _ := Marshal(&pb.User{Name: "哈哈", Age: 23})
+	au := &pb.AliasUser{}
+	fmt.Println(au.Unmarshal(p), au.Name)
+
+	// cannot inline, need to find the reason
+	p, _ = Marshal(&pb.User{Name: "哈哈", Age: 23})
 	p = MustMarshal(&pb.User{Age: 23})
 	print(p)
 
@@ -19,6 +23,14 @@ func main() {
 	buf := make([]byte, 100)
 	n, err := (&pb.User{Name: "嘿嘿", Age: 30}).MarshalTo(buf)
 	fmt.Println(n, err)
+
+	// test nil struct
+	a := &pb.A{Name: "a"}
+	buf = make([]byte, 100)
+	a.MarshalTo(buf)
+	ua := new(pb.A)
+	ua.Unmarshal(buf)
+	fmt.Println(ua.B)
 }
 
 func Marshal(m proto.Message) ([]byte, error) {
